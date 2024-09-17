@@ -68,17 +68,21 @@ public class Trabalho {
                     String[] storedData = storedImagesDb.get(storedImagePath);
                     String storedHash = storedData[0];
                     String storedSignature = storedData[1];
-
+                    
                     // Verifica o hash e a assinatura digital
                     if (imageHash.equals(storedHash) && digitalSignature.verifySignature(imageHash, storedSignature)) {
+                        System.out.println("Hash gerado para " + imageFile.getName() + ": " + imageHash);
                         System.out.println("A imagem '" + imageFile.getName() + "' e identica a '" + storedImagePath + "' e foi validada.");
+                        System.out.println("_______________________________________________________________");
                         found = true;
                         break;
                     }
                 }
 
                 if (!found) {
+                    System.out.println("Hash gerado para " + imageFile.getName() + ": " + imageHash);
                     System.out.println("A imagem '" + imageFile.getName() + "' nao foi encontrada no banco de dados.");
+                    System.out.println("_______________________________________________________________");
                 }
             }
 
